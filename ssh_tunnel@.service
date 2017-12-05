@@ -1,0 +1,14 @@
+[Unit]
+Description="Ssh tunnel daemon (%i)"
+After=network-online.target
+After=network.target
+After=syslog.target
+
+[Service]
+Type=simple
+User=ssh-tunnel
+Group=nogroup
+ExecStart=/usr/local/ssh_tunnel/bin/ssh_tunnel.pl -f /usr/local/ssh_tunnel/etc/ssh_tunnel.conf "%i"
+
+[Install]
+WantedBy=multi-user.target
