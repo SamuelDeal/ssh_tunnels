@@ -151,7 +151,7 @@ sub parse_conf {
 	foreach my $server (grep { ! /\// } keys %config) {
 		my $server_realname = undef;
 		if(exists $config{$server}{'server'}) {
-			my $server_realname = $config{$server}->{'server'};
+			$server_realname = $config{$server}->{'server'};
 			gethostbyname($server_realname) or die "Can't resolve $server_realname: $!\n";
 		}
 		else {
@@ -279,18 +279,11 @@ sub run {
 	}	
 	
 	# Run commands
-	my @alived = ();
 	foreach my $proc_cmd (@proc_cmd_list) {
 		my $pid = fork();
 		die "Unable to fork: $!\n" unless defined $pid;
-		
-		if($pid == 0) {
-			print join(' ', map { "'".$_."'" } @{$proc_cmd})."\n";
-			exec @{$proc_cmd} or die "couldn't exec autossh: $!";
-		}
-		else {
-			push @alived, $pid;
-		}
+		next unless $pid == 0;
+		exec @{$proc_cmd} or die "couldn't exec autossh: $!";
 	};
 	
 	# Wait for all process to finish
