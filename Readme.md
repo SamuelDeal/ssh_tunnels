@@ -24,6 +24,7 @@ To deploy new ssh tunnels you should, first:
 
 Then, on the tunnel initiating server:
 * install git and autossh: `apt-get install git autossh`
+* install perl dependencies: `cpan install Config::Auto`
 * clone the repository in /usr/local: `cd /usr/local; git clone https://github.com/aziugo/ssh_tunnels.git`
 * create a specific user: `adduser --system --home /home/ssh-tunnel ssh-tunnel`
 * create an ssh key for the ssh-tunnel user WITHOUT passphrase: `su -l ssh-tunnel -s /bin/bash -c "ssh-keygen -t rsa -b 4096"`

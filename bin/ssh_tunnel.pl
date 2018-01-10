@@ -260,6 +260,8 @@ sub run {
 	my @proc_cmd_list = ();
 	my $autossh_path = qx/which autossh/;
 	chomp($autossh_path);
+	die "Unable to find autossh installation path" unless  -e $autossh_path;
+	
 	foreach my $proc_conf (@proc_conf_list) {
 		my @cmd = ($autossh_path, "-M", "0", "-nNT", "-o", 'ServerAliveInterval 60', "-o", 
 			'ServerAliveCountMax 3', '-i', $proc_conf->{'key'}, '-l', $proc_conf->{'user'}, 
