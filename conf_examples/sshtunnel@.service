@@ -8,7 +8,7 @@ After=syslog.target
 Type=simple
 User=ssh-tunnel
 Group=nogroup
-ExecStart=/usr/local/ssh_tunnels/bin/ssh_tunnel.pl -c /usr/local/ssh_tunnels/etc/ssh_tunnel.conf "%i"
+ExecStart=/usr/bin/env python /usr/local/sshtunnel/sshtunnel.py run -c /usr/local/sshtunnel/sshtunnel.conf -l syslog "%i"
 
 [Install]
 WantedBy=multi-user.target

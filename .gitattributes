@@ -1,0 +1,11 @@
+# Set default behaviour, in case users don't have core.autocrlf set.
+* text=auto eol=lf
+
+# Windows specific files
+*.bat text eol=crlf
+*.nsh text eol=crlf
+*.nsi text eol=crlf
+*.vcxproj text eol=crlf
+*.vcxproj.filters text eol=crlf
+*.vcxproj.user text eol=crlf
+*.sln text eol=crlf
