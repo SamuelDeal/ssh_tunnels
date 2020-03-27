@@ -1123,7 +1123,7 @@ class TunnelConfig(object):
             for line in fh:
                 matches = TunnelConfig.INCLUDE_RE.match(line)
                 if matches:
-                    with using_cwd(os.path.dirname(filename)):
+                    with using_cwd(os.path.abspath(os.path.dirname(filename))):
                         for sub_filename in glob.glob(matches.group(1)):
                             sub_sub_section = "" if sub_section is None else sub_section+"/"
                             sub_sub_section += os.path.splitext(os.path.basename(sub_filename))[0]
